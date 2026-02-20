@@ -1,0 +1,40 @@
+# DBLens 2 – CI (backend lint + tests)
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt -r requirements-dev.txt
+
+      - name: Run tests
+        run: pytest -v --tb=short
+        env:
+          # Minimal env so app loads; tests avoid DB where possible
+          DATABASE_HOST: localhost
+          DATABASE_PORT: 5432
+          DATABASE_USER: postgres
+          DATABASE_PASSWORD: postgres
+          DATABASE_NAME: dblens_test
+          JWT_SECRET_KEY: test-secret-key-for-ci-only
+          ENCRYPTION_KEY: test-encryption-key-32-bytes-base64!!

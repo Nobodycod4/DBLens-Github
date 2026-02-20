@@ -1,0 +1,48 @@
+# --------------------------
+# Python cache and compiled files
+# --------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# --------------------------
+# Virtual environments
+# --------------------------
+venv/
+backend/venv/
+
+# --------------------------
+# Environment files
+# --------------------------
+.env
+
+# --------------------------
+# Backups
+# --------------------------
+backups/
+backend/backups/
+
+# --------------------------
+# OS junk
+# --------------------------
+.DS_Store
+
+# --------------------------
+# Build output (executable / production)
+# --------------------------
+backend/static/
+frontend/dist/
+backend/build/
+backend/dist/
+
+# --------------------------
+# Docs and build scripts (excluded from repo)
+# --------------------------
+About.md
+apply_palette_everywhere.plan.md
+build.bat
+build.sh
+README.md
+roadmap.md
+new updates.md

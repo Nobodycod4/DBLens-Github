@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Light theme only – option 2. Theme vars set from src/theme/colors.js (applyPaletteToCss). */
+:root {
+  --bg-base: #FAFAF9;
+  --bg-subtle: #F5F5F4;
+  --bg-muted: #E7E5E4;
+  --bg-emphasis: #D6D3D1;
+  --fg-default: #1C1917;
+  --fg-muted: #78716C;
+  --fg-subtle: #A8A29E;
+  --border-default: #E7E5E4;
+  --border-muted: #D6D3D1;
+}
+
+.dark {
+  --bg-base: var(--bg-base-dark, #0D0116);
+  --bg-subtle: #161B22;
+  --bg-muted: #21262D;
+  --bg-emphasis: #30363D;
+  --fg-default: #E8E6F0;
+  --fg-muted: #8B949E;
+  --fg-subtle: #6E7681;
+  --border-default: #30363D;
+  --border-muted: #21262D;
+  --accent: #657ED4;
+  --accent-emphasis: #7b8fd9;
+  --accent-muted: rgba(101, 126, 212, 0.2);
+}
+
+* { border-color: var(--border-default); }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: var(--bg-base);
+  color: var(--fg-default);
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-default); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--fg-subtle); }
+.dark ::-webkit-scrollbar-thumb { background: #30363D; }
+
+::selection { background-color: var(--accent-muted); }
+
+.btn-primary {
+  background-color: var(--accent);
+  color: #FFFFFF;
+}
+.btn-primary:hover:not(:disabled) { opacity: 0.9; }
+
+.input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  background-color: var(--bg-base);
+  border: 1px solid var(--border-default);
+  border-radius: 6px;
+  color: var(--fg-default);
+}
+.input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-muted);
+}
+
+.sidebar { background-color: var(--bg-subtle); border-right: 1px solid var(--border-default); }
+.dark .sidebar { background-color: #161B22; }
+
+.sidebar-item-active { background-color: var(--accent-muted) !important; color: var(--accent) !important; }
+
+.code-block {
+  background-color: #0D1117;
+  border: 1px solid #30363D;
+  border-radius: 6px;
+  padding: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8125rem;
+  color: #C9D1D9;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.animate-fadeIn { animation: fadeIn 0.15s ease-out; }
+.animate-slideUp { animation: slideUp 0.2s ease-out; }
+
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-muted) 0%, var(--bg-emphasis) 50%, var(--bg-muted) 100%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+}
+@keyframes skeleton-loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.dark .react-flow__background { background-color: #0D1117 !important; }
+.dark .react-flow__minimap { background-color: #161B22 !important; border: 1px solid #30363D; border-radius: 6px; }
+.dark .react-flow__controls { background-color: #161B22; border: 1px solid #30363D; border-radius: 6px; }
+.dark .react-flow__controls-button { background-color: transparent; border-bottom: 1px solid #30363D; color: #8B949E; }
+.dark .react-flow__controls-button:hover { background-color: #21262D; color: #C9D1D9; }
+.dark .monaco-editor, .dark .monaco-editor .margin, .dark .monaco-editor-background { background-color: #0D1117 !important; }
